@@ -57,7 +57,7 @@ It follows an **ETL pipeline** pattern:
 
 ##  Scrum Board
 
-[Access the GitHub project board here](PUT-LINK-HERE)  
+Access the GitHub project board here --> https://trello.com/b/R0nDRKGQ/momo-etl-sprint-1 
 
 ---
 
