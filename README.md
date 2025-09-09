@@ -51,7 +51,7 @@ It follows an **ETL pipeline** pattern:
 
 ## System Architecture
 
-[View the system architecture diagram here](PUT-LINK-HERE)  
+View the system architecture diagram here --> https://drive.google.com/file/d/12Kviqjg_MJxGnNvE9CSRUwOVm7asimPx/view?usp=sharing
 
 ---
 
