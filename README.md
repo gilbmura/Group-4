@@ -59,13 +59,14 @@ View the system architecture diagram here --> https://drive.google.com/file/d/12
 
 Access the GitHub project board here --> https://trello.com/b/R0nDRKGQ/momo-etl-sprint-1 
 
+This week we have decided to change our scrum board from Trello and use github as it will be easy to mark our issues as they occur.
 ---
 
 ## Setup & Installation
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/momo-sms-analytics.git
+   https://github.com/gilbmura/Group-4.git
    cd momo-sms-analytics
 ````
 
