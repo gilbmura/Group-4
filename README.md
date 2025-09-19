@@ -114,6 +114,21 @@ This week we have decided to change our scrum board from Trello and use github a
 * [ ] Improved analytics (filters, trends, KPIs)
 * [ ] Deployment to cloud (Heroku / Render / AWS / etc.)
 
+## ERD & Data Artifacts (added)
+
+In the second week we completed the Entity Relationship Diagram (ERD) and exported two key artifacts to make it easier to understand and reproduce the database design:
+
+- ERD diagram (visual): [Docs/MOMO DB Draft.pdf](Docs/MOMO DB Draft.pdf) — use this to review table relationships and keys.
+- JSON schema model: [examples/momo_json-model.json](examples/momo_json-model.json) — machine-readable JSON schemas and mapping notes used by the ETL and API layers.
+- SQL DDL script: [data/processed/database_setup.sql](data/processed/database_setup.sql) — the SQL used to create the development schema (drop/create, tables, indices, and foreign keys).
+
+How to use them:
+- Review the ERD to confirm relationships and constraints before running the database script.
+- Apply the SQL script to a local MySQL (or compatible) instance during development:
+  ```bash
+  mysql -u root -p < data/processed/database_setup.sql
+  ```
+
 ---
 
 # Testing
