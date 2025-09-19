@@ -1,0 +1,307 @@
+{
+  "json_schemas": {
+    "description": "JSON schemas for MoMo SMS data processing system including users, messages, transactions, categories, and system logs.",
+    "version": "1.0.0",
+    "schemas": {
+      "user": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "integer",
+            "description": "Unique user identifier"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "User's full name"
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 13,
+            "description": "User phone number"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "maxLength": 50,
+            "description": "User email address"
+          }
+        },
+        "required": ["user_id", "name", "phone"],
+        "example": {
+          "user_id": 1,
+          "name": "INEZA Peace",
+          "phone": "250788110381",
+          "email": "peaceineza@gmail.com"
+        }
+      },
+      "message": {
+        "type": "object",
+        "properties": {
+          "message_id": {
+            "type": "integer",
+            "description": "Unique message identifier"
+          },
+          "raw_text": {
+            "type": "string",
+            "description": "Original SMS content"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Message received time and date"
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "ID of user who received the message"
+          }
+        },
+        "required": ["message_id", "raw_text", "time", "user_id"],
+        "example": {
+          "message_id": 101,
+          "raw_text": "You have received RWF 2000 from Placide SHAMI",
+          "time": "2024-05-10T16:30",
+          "user_id": 1
+        }
+      },
+      "category": {
+        "type": "object",
+        "properties": {
+          "category_id": {
+            "type": "integer",
+            "description": "Unique category identifier"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Transaction category name"
+          },
+          "description": {
+            "type": "string",
+            "description": "Category description"
+          }
+        },
+        "required": ["category_id", "name"],
+        "example": {
+          "category_id": 1,
+          "name": "Money Transfer",
+          "description": "Peer-to-peer money transfers"
+        }
+      },
+      "transaction": {
+        "type": "object",
+        "properties": {
+          "transaction_id": {
+            "type": "integer",
+            "description": "Unique transaction identifier"
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "Associated user ID"
+          },
+          "message_id": {
+            "type": "integer",
+            "description": "Linked message ID"
+          },
+          "category_id": {
+            "type": "integer",
+            "description": "Transaction category ID"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Transaction amount"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Transaction date"
+          },
+          "type": {
+            "type": "string",
+            "description": "Transaction type"
+          },
+          "status": {
+            "type": "string",
+            "description": "Transaction status"
+          },
+          "balance": {
+            "type": "number",
+            "description": "Balance after transaction"
+          },
+          "charge": {
+            "type": "number",
+            "description": "Transaction fee/charge"
+          }
+        },
+        "required": ["transaction_id", "user_id", "amount", "date"],
+        "example": {
+          "transaction_id": 5001,
+          "user_id": 1,
+          "message_id": 101,
+          "category_id": 1,
+          "amount": 2000,
+          "currency": "RWF",
+          "date": "2024-05-10T16:30",
+          "type": "RECEIVED",
+          "status": "SUCCESS",
+          "balance": 5000,
+          "charge": 0
+        }
+      },
+      "system_log": {
+        "type": "object",
+        "properties": {
+          "log_id": {
+            "type": "integer",
+            "description": "Unique log identifier"
+          },
+          "log_level": {
+            "type": "string",
+            "enum": ["INFO", "WARNING", "ERROR", "DEBUG"],
+            "description": "Log severity level"
+          },
+          "log_category": {
+            "type": "string",
+            "description": "Category of the log"
+          },
+          "details": {
+            "type": "string",
+            "description": "Detailed log message"
+          },
+          "user_id": {
+            "type": "integer",
+            "description": "Associated user ID"
+          },
+          "transaction_id": {
+            "type": "integer",
+            "description": "Associated transaction ID"
+          },
+          "processing_time": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Processing time and date"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Log creation timestamp"
+          }
+        },
+        "required": ["log_id", "log_level", "log_category", "details", "created_at"],
+        "example": {
+          "log_id": 301,
+          "log_level": "INFO",
+          "log_category": "PROCESSING",
+          "details": "Transaction processed successfully",
+          "user_id": 1,
+          "transaction_id": 5001,
+          "processing_time": "2024-05-10T16:30",
+          "created_at": "2024-05-10T16:30"
+        }
+      }
+    },
+    "api_response_examples": {
+      "get_transaction": {
+        "description": "Complete transaction with related user, message, and category",
+        "response": {
+          "success": true,
+          "data": {
+            "transaction_id": 5001,
+            "amount": 2000,
+            "currency": "RWF",
+            "date": "2024-05-10T16:30",
+            "type": "RECEIVED",
+            "status": "SUCCESS",
+            "balance": 5000,
+            "charge": 0,
+            "user": {
+              "user_id": 1,
+              "name": "INEZA Peace",
+              "phone": "250788110381",
+              "email": "peaceineza@gmail.com"
+            },
+            "message": {
+              "message_id": 101,
+              "raw_text": "You have received RWF 2000 from Auriane KALISA",
+              "time": "2024-05-10T16:30"
+            },
+            "category": {
+              "category_id": 1,
+              "name": "Money Transfer",
+              "description": "Peer-to-peer money transfers"
+            }
+          },
+          "meta": {
+            "timestamp": "2024-05-10T16:30",
+            "version": "1.0.0",
+            "request_id": "req_123456"
+          }
+        }
+      }
+    },
+    "sql_to_json_mapping": {
+      "description": "Mapping between SQL tables and JSON representations",
+      "mappings": {
+        "users_table": {
+          "json_schema": "user",
+          "direct_mapping": {
+            "UserID": "user_id",
+            "Name": "name",
+            "Phone": "phone",
+            "Email": "email"
+          }
+        },
+        "messages_table": {
+          "json_schema": "message",
+          "direct_mapping": {
+            "MessageID": "message_id",
+            "Raw text": "raw_text",
+            "Time": "time",
+            "UserID": "user_id"
+          }
+        },
+        "categories_table": {
+          "json_schema": "category",
+          "direct_mapping": {
+            "CategoryID": "category_id",
+            "Name": "name",
+            "Description": "description"
+          }
+        },
+        "transactions_table": {
+          "json_schema": "transaction",
+          "direct_mapping": {
+            "TransactionID": "transaction_id",
+            "UserID": "user_id",
+            "MessageID": "message_id",
+            "CategoryID": "category_id",
+            "Amount": "amount",
+            "Currency": "currency",
+            "Date": "date",
+            "Type": "type",
+            "Status": "status",
+            "Balance": "balance",
+            "Charge": "charge"
+          }
+        },
+        "system_logs_table": {
+          "json_schema": "system_log",
+          "direct_mapping": {
+            "LogID": "log_id",
+            "Log_Level": "log_level",
+            "Log_category": "log_category",
+            "Details": "details",
+            "UserID": "user_id",
+            "TransactionID": "transaction_id",
+            "Processing time": "processing_time",
+            "Created_at": "created_at"
+          }
+        }
+      }
+    }
+  }
+}
