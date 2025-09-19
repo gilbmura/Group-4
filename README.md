@@ -67,7 +67,7 @@ This week we have decided to change our scrum board from Trello and use github a
 1. **Clone the repository**
    ```bash
    https://github.com/gilbmura/Group-4.git
-   cd momo-sms-analytics
+   cd Group-4
 ````
 
 2. **Create a virtual environment**
