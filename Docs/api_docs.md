@@ -1,7 +1,8 @@
 # MoMo SMS Transactions API Documentation
 
 **Version:** 1.0.0  
-**Base URL:** `http://127.0.0.1:8000`  
+**Base URL:** http://127.0.0.1:8000
+
 
 This API provides access to mobile money SMS transaction records. It supports CRUD operations and basic authentication.
 
