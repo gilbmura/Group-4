@@ -28,6 +28,7 @@ All endpoints require authentication. Use the following credentials:
 {
   "error": "Unauthorized"
 }
+```
 Header Example:
 
 pgsql
@@ -36,15 +37,16 @@ Authorization: Basic <base64(username:password)>
 Endpoints
 1. GET /transactions
 Retrieve all transactions.
+```
 
 Request Example:
 
-bash
+```bash
 
 curl -u alice:user123 http://127.0.0.1:8000/transactions
 Response Example (200 OK):
 Returns a list of transaction objects with user, message, and category fields.
-
+```
 Error Codes:
 
 401 Unauthorized – Invalid credentials
@@ -54,12 +56,12 @@ Retrieve a single transaction by ID.
 
 Request Example:
 
-bash
+```bash
 
 curl -u group4:member http://127.0.0.1:8000/transactions/5001
 Response Example (200 OK):
 Returns the transaction object for the given ID.
-
+```
 Error Codes:
 
 401 Unauthorized – Invalid credentials
@@ -67,13 +69,13 @@ Error Codes:
 403 Forbidden – User cannot view this transaction
 
 404 Not Found – Transaction ID does not exist
-
+```
 3. POST /transactions
 Add a new transaction.
 
 Request Example:
 
-bash
+```bash
 
 curl -X POST -u alice:user123 \
 -H "Content-Type: application/json" \
@@ -95,7 +97,7 @@ Update an existing transaction.
 
 Request Example:
 
-bash
+```bash
 
 curl -X PUT -u alice:user123 \
 -H "Content-Type: application/json" \
@@ -117,7 +119,7 @@ Delete a transaction.
 
 Request Example:
 
-bash
+```bash
 
 curl -X DELETE -u alice:user123 http://127.0.0.1:8000/transactions/5002
 Response Example (204 No Content):
@@ -136,7 +138,7 @@ Benchmark search efficiency (linear vs dictionary) for the first 20 transactions
 
 Request Example:
 
-bash
+```bash
 
 curl -u group4:member http://127.0.0.1:8000/dsa/benchmark
 Response Example (200 OK):
@@ -152,14 +154,3 @@ Stronger alternatives:
 JWT (JSON Web Tokens) – Tokens with expiration, no need to send passwords every request.
 
 OAuth2 – Token-based access control, supports scopes and third-party apps.
-
-
-
-
-
-
-
-
-
-
-ChatGPT can make mistak
